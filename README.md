@@ -127,8 +127,8 @@ rover/
 Clone the repository:
 
 ```bash
-git clone https://github.com/bichitrahazarika/surveillance-rover.git
-cd surveillance-rover
+git clone https://github.com/bichitrahazarika/pi-surveillance-rover.git
+cd pi-surveillance-rover
 ```
 
 Create a virtual environment:
