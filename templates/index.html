@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Surveillance Rover</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+  <!-- ══════════════════════════════════════════════════════════
+       HUD GRID
+       The whole screen is one CSS Grid with 5 named areas:
+
+           topbar   topbar   topbar
+           left     stage    right
+           botbar   botbar   botbar
+
+       No absolute positioning for the main regions — the grid
+       handles the layout, which is what makes it maintainable.
+       ══════════════════════════════════════════════════════════ -->
+  <div class="hud">
+
+    <!-- ─────────────── TOP BAR ─────────────── -->
+    <header class="hud-topbar">
+
+      <div class="topbar-group">
+        <span class="online-dot" id="online-dot"></span>
+        <span class="stat">
+          <span class="stat-label">ONLINE</span>
+        </span>
+        <span class="stat">
+          <span class="stat-label">FPS</span>
+          <strong class="stat-value" id="fps">--</strong>
+        </span>
+        <span class="stat">
+          <span class="stat-label">BATTERY</span>
+          <strong class="stat-value" id="battery">--%</strong>
+        </span>
+      </div>
+
+      <h1 class="hud-title">SURVEILLANCE&nbsp;ROVER</h1>
+
+      <div class="topbar-group right">
+        <span class="stat">
+          <span class="stat-label">AI&nbsp;MODE</span>
+          <strong class="stat-value" id="ai-status">OFF</strong>
+        </span>
+      </div>
+
+    </header>
+
+    <!-- ─────────────── LEFT PANEL : DRIVE CONTROLS ─────────────── -->
+    <aside class="hud-panel hud-left">
+
+      <h2 class="panel-title">CONTROLS</h2>
+
+      <!-- D-pad (existing IDs preserved: script.js keeps working) -->
+      <div class="dpad">
+        <button class="dpad-btn up"    id="forward"  aria-label="Forward">▲</button>
+        <button class="dpad-btn left"  id="left"     aria-label="Left">◀</button>
+        <button class="dpad-btn stop"  id="stop"     aria-label="Stop">■</button>
+        <button class="dpad-btn right" id="right"    aria-label="Right">▶</button>
+        <button class="dpad-btn down"  id="backward" aria-label="Backward">▼</button>
+      </div>
+
+      <!-- Analog joystick (used by controls.js — delete this block
+           and the controls.js script tag if you haven't added it yet) -->
+      <div id="joystick-zone">
+        <div id="joystick-knob"></div>
+      </div>
+
+      <!-- Speed -->
+      <div class="speed-area">
+        <label for="speedSlider">
+          SPEED <strong id="speedValue">80%</strong>
+        </label>
+        <input type="range" id="speedSlider" min="20" max="100" value="80">
+      </div>
+
+    </aside>
+
+    <!-- ─────────────── CENTER STAGE : CAMERA ─────────────── -->
+    <main class="hud-stage">
+      <div class="camera-frame">
+
+        <img src="/video_feed" id="video" alt="Live camera stream" draggable="false">
+
+        <!-- Decorations scoped to the camera frame, not the screen -->
+        <div class="corner tl"></div>
+        <div class="corner tr"></div>
+        <div class="corner bl"></div>
+        <div class="corner br"></div>
+        <div class="scan-line"></div>
+        <div class="crosshair"></div>
+
+      </div>
+    </main>
+
+    <!-- ─────────────── RIGHT PANEL : AI ─────────────── -->
+    <aside class="hud-panel hud-right">
+
+      <h2 class="panel-title">AI&nbsp;PANEL</h2>
+
+      <div class="ai-buttons">
+        <button id="ai-on"  class="ai-btn">AI ON</button>
+        <button id="ai-off" class="ai-btn off">AI OFF</button>
+      </div>
+
+      <!-- System status readout -->
+      <dl class="status-box">
+        <div class="status-row">
+          <dt>Camera</dt>
+          <dd id="camera-status">ONLINE</dd>
+        </div>
+        <div class="status-row">
+          <dt>Motors</dt>
+          <dd id="motor-status">READY</dd>
+        </div>
+        <div class="status-row">
+          <dt>Server</dt>
+          <dd id="server-status">RUNNING</dd>
+        </div>
+        <div class="status-row">
+          <dt>Detections</dt>
+          <dd id="object-count">0</dd>
+        </div>
+      </dl>
+
+    </aside>
+
+    <!-- ─────────────── BOTTOM BAR : STATUS STRIP ─────────────── -->
+    <footer class="hud-botbar">
+      <span class="stat">
+        <span class="stat-label">DIRECTION</span>
+        <strong class="stat-value" id="direction">STOP</strong>
+      </span>
+      <span class="stat">
+        <span class="stat-label">SPEED</span>
+        <strong class="stat-value" id="speed-status">80%</strong>
+      </span>
+      <span class="stat">
+        <span class="stat-label">AI</span>
+        <strong class="stat-value" id="ai-state">OFF</strong>
+      </span>
+      <span class="stat">
+        <span class="stat-label">RESOLUTION</span>
+        <strong class="stat-value" id="resolution">1280 × 720</strong>
+      </span>
+      <span class="stat">
+        <span class="stat-label">OBJECTS</span>
+        <strong class="stat-value" id="objects-bottom">0</strong>
+      </span>
+      <span class="stat">
+        <span class="stat-label">TIME</span>
+        <strong class="stat-value" id="clock">--:--:--</strong>
+      </span>
+    </footer>
+
+  </div><!-- /.hud -->
+
+  <script src="/static/script.js"></script>
+  <!-- Uncomment once controls.js is in static/ :
+  <script src="/static/controls.js"></script>
+  -->
+
+</body>
+</html>

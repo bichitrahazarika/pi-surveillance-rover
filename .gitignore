@@ -1,0 +1,10 @@
+# Virtual environment — recreated with pip, never committed
+rover-env/
+
+# Python bytecode
+__pycache__/
+*.pyc
+
+# OS / editor junk
+.DS_Store
+*.swp
