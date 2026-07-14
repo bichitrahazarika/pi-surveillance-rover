@@ -1,4 +1,4 @@
-# Surveillance Rover
+# Raspebrry Pi Surveillance Rover
 
 An AI-powered surveillance rover built using **Raspberry Pi 5**, **Flask**, **OpenCV**, and **YOLOv8**. It provides live HD video streaming, browser-based remote driving, real-time object detection, and a tactical HUD interface that works on phones, tablets, and laptops.
 
